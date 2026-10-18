@@ -11,5 +11,5 @@
 
 ---
 <p align="center">
-  <small>© 2025 · ℋ𝒮ℋ · <a href="https://hsh-personal-blog.pages.dev">拾光手记</a></small>
+  <small>© 2026 · ℋ𝒮ℋ · <a href="https://hsh-personal-blog.pages.dev">拾光手记</a></small>
 </p>
