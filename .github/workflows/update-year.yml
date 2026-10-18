@@ -1,27 +1,24 @@
-name: Update Copyright Year
-
+name: Update Year
 on:
   schedule:
-    - cron: '0 0 1 1 *'   # 每年 1 月 1 日 UTC 00:00（北京时间 08:00）
+    - cron: '0 0 1 * *'   # 每月 1 号跑一次
   workflow_dispatch:
 
 jobs:
-  update-year:
+  update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Update year in README
+      - name: Update year
         run: |
-          CURRENT_YEAR=$(date +'%Y')
-          sed -i "s/© [0-9]\{4\}/© $CURRENT_YEAR/g" README.md
-
-      - name: Commit and push
-        run: |
+          YEAR=$(date +%Y)
+          sed -i "s/© [0-9]\{4\}/© $YEAR/g" README.md
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || (git add README.md && git commit -m "docs: auto-update copyright year to $CURRENT_YEAR" && git push)
+          git diff --quiet || (git add README.md && git commit -m "chore: update year" && git push)
+
+      - name: Keep alive
+        uses: liskin/gh-workflow-keepalive@v1
